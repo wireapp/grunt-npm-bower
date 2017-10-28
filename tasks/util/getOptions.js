@@ -30,6 +30,6 @@ module.exports = customOptions => {
     .then(() => verifyOptions(options, required))
     .then(() => ({
       message: chalk`Options: {blue ${JSON.stringify(options)}}`,
-      result: options
+      result: options,
     }));
 };

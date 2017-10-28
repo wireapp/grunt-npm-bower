@@ -15,9 +15,9 @@ module.exports = grunt => {
         grunt.log.ok(message);
         done();
       })
-      .catch((error) => {
+      .catch(error => {
         grunt.log.error(`Plugin failed: ${error.message}`);
         done(false);
-      })
+      });
   });
 };
