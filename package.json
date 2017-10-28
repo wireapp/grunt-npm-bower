@@ -1,0 +1,48 @@
+{
+  "dependencies": {
+    "chalk": "2.3.0",
+    "fs-extra": "4.0.2",
+    "glob": "7.1.2"
+  },
+  "devDependencies": {
+    "eslint": "4.10.0",
+    "eslint-config-prettier": "2.6.0",
+    "eslint-plugin-prettier": "2.3.1",
+    "grunt": "1.0.1",
+    "jasmine": "2.8.0",
+    "prettier": "1.7.4"
+  },
+  "description": "Grunt plugin which helps migrating from Bower to npm.",
+  "license": "GPL-3.0",
+  "files": [
+    "tasks"
+  ],
+  "keywords": [
+    "bower",
+    "bower_components",
+    "dependencies",
+    "exportsOverride",
+    "grunt",
+    "gruntjs",
+    "gruntplugin",
+    "migrate",
+    "migration",
+    "node_modules",
+    "npm",
+    "tasks"
+  ],
+  "name": "grunt-npm-bower",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wireapp/grunt-npm-bower.git"
+  },
+  "scripts": {
+    "fix": "yarn lint:config --write && yarn lint:script --fix",
+    "lint": "yarn lint:config && yarn lint:script",
+    "lint:config": "prettier --ignore-path .gitignore \"**/*.json\"",
+    "lint:script": "eslint --ignore-path .gitignore \"**/*.js\"",
+    "start": "grunt",
+    "test": "jasmine"
+  },
+  "version": "0.0.0"
+}
