@@ -2,7 +2,7 @@ module.exports = grunt => {
   grunt.initConfig({
     npmBower: {
       options: {
-        bowerConfig: './test/bower.json',
+        bowerConfig: './spec/fixtures/bower.json',
         bowerDir: './test/bower_components',
         cleanTargetDir: true,
         resolveName: true,
