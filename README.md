@@ -51,7 +51,7 @@ module.exports = grunt => {
   });
 
   grunt.loadNpmTasks('grunt-npm-bower');
-  grunt.registerTask('default', ['bowerMigrate:npm']);
+  grunt.registerTask('default', ['npmBower']);
 };
 ```
 
