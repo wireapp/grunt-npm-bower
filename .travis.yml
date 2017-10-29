@@ -1,16 +1,20 @@
-# http://docs.travis-ci.com/user/languages/javascript-with-nodejs/
 language: node_js
 node_js:
-  - "8"
-
-# https://blog.travis-ci.com/2013-12-05-speed-up-your-builds-cache-your-dependencies
+- '8'
 cache:
   yarn: true
   directories:
-    - "node_modules"
-
+  - node_modules
 before_script:
-  - "yarn lint"
-
+- yarn lint
 notifications:
   email: false
+deploy:
+  api_key:
+    secure: GiJBO9vMda395kIYK4QuPziMoMXovaWWfvNTQ9VccsSwvWGX65l/ukyIXeur2lMGHzDQr/m+KfRogf4jvxEQvLm+PgB9DW5Xcto6d/jl8yr7x3EUj3E3OFSVo746vDOwHvgxxPMohzmug9pA/2QDxWlf1MmXfxXQZQvDgxCoZfBAjjVbvqunj8+te3/i0X/PmB/Sht+q0CERRDOAT95MXDyoSPafAuysJL3+s5IhZ+xk627i2FhElcCcnK0aVsMkdZqXS9DO+8vCIo77TZnWHHlEtIGDBoDHOltFZHvcOQ3w16ndILmybEBr0AfrxYngOFd+xRJTEbaFOJ39KKhlymd7nVFxsGNcF6UqcvsI+2T9a1uWgMrRwTQcwyb/ByFHjjsn7MPmI6lrL9inoWMeREO/lA93QzkChASSr6exfFxqqoMzRqcqfJv/Di16CEE5V11QmRy20caTjo03EMbvpKV7Yjg2DRg1se0SKK+OQr4bo7TcIpRAotXL5pA22l6FpdcMTjcg6PgxrbDIaE4kniexL+hJ8CA4a7ksa8Sl5q96UBCEIrZx0zCmoSMfAQkf5TU6kTQ8z4eRDS1VBCRwLVO1YAYggv7LDV7yNuJkiiOojbQsNxnF1OaNWr0GVTx9xBleATj4qDmB7whQ1EKjItfxzvjepuMznVGwPrf+8As=
+  email:
+    secure: LFHssbBUXz+2NXvXBT3TEtl5PlUTXl1Ecv/2m66vq+51udsJa9sZNQu7tH/rFdEizMHjyKjxQI/+qYW1TJ3K/H2QV05v/YelQ+5/jDBMReM73Q6DOOGZM5C0VRE/oCCATRF0glmRHJQKGFXS/NaegeT1JnDiOzwyyLAGI1deL+nH9T2lmicMeU/2XqDUsaJpmAgjgf/slC/Jr/P7H7ANFKfu9DiqCFN+GvXKLN167jGd9Q7XJX/EF9613RP7dMAkZKlVbsndHBDCHLYXj3FXZfJFDTM2wzsp0ulW3+25snSu+ik3ODyEoqoSOH+7/qMQOh2QmYqSHLBuXykfhG11QH5ymcBWuEOIiwVcgAAONFZf210c54pTwZKMYTHeRlKAWKvMUguXEsp4o1kHjlnbGr0Kyz5mDZkl7wsoeKG2Ss9QHNd/ejtlDX1kp2r2nFxbHj74ZEQuPUTc2Rb3aY1yvc3C/tI5Mt23gGmaIBwFF0dnorsFI76xqPW5FOEDFNrEDqOzYUBuNEdKRI13NT02dEEOzrq6erWWej5JKMW9KwtLMysrgW93NO2s/zWeP9+wcHEPGvb57OkKN0Ssu9BB9Zjy9P136dYut2k4MOI87Ka6rlT6nzzeQIHn6AaL9SG4Aw/tD63OH04/x0IahNr9mj80ZB3PPRKDklbDi7eAYyE=
+  provider: npm
+  skip_cleanup: true
+  on:
+    tags: true
