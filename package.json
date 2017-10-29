@@ -14,7 +14,9 @@
   },
   "description": "Grunt plugin which helps migrating from Bower to npm.",
   "license": "GPL-3.0",
-  "files": ["tasks"],
+  "files": [
+    "tasks"
+  ],
   "keywords": [
     "bower",
     "bower_components",
@@ -44,5 +46,5 @@
     "preversion": "yarn test",
     "postversion": "git push && git push --tags"
   },
-  "version": "0.0.0"
+  "version": "0.0.1"
 }
