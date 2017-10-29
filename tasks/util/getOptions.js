@@ -24,6 +24,7 @@ const DEFAULT_OPTIONS = {
   bowerConfig: 'bower.json',
   cleanTargetDir: false,
   componentDir: 'node_modules',
+  npmConfig: 'package.json',
   overrideProp: 'exportsOverride',
   resolveName: true,
   verbose: false,

@@ -22,7 +22,7 @@ const pkg = require('../package.json');
 const cleanTargetDir = require('./util/cleanTargetDir');
 const copyBowerComponents = require('./util/copyBowerComponents');
 const getOptions = require('./util/getOptions');
-const parseBowerConfiguration = require('./util/parseBowerConfiguration');
+const parseConfigurations = require('./util/parseConfigurations');
 
 const PLUGIN_NAME = 'npmBower';
 const PLUGIN_DESCRIPTION = pkg.description;
@@ -41,7 +41,7 @@ module.exports = grunt => {
           return cleanTargetDir.run(options).then(({message}) => grunt.log.ok(message));
         }
       })
-      .then(() => parseBowerConfiguration.run(options))
+      .then(() => parseConfigurations.run(options))
       .then(({message, result: bowerConfig}) => {
         grunt.log.ok(message);
         return copyBowerComponents.run(options, bowerConfig);

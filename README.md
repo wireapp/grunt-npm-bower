@@ -71,6 +71,13 @@ Location of your Bower configuration (relative to your project's root directory)
 
 Location where your Bower components are installed. When using `bower install` this will be `bower_components`. If you are using `npm install` (or `yarn`), it's `node_modules`. If you are using a [.bowerrc](https://bower.io/docs/config/) file, it might be something else.
 
+### `npmConfig`
+
+- Type: `String`
+- Default: `package.json`
+
+Location of your npm configuration (relative to your project's root directory).
+
 ### `cleanTargetDir`
 
 - Type: `Boolean`
