@@ -19,20 +19,23 @@
 
 const path = require('path');
 
-const parseBowerConfiguration = require('../../tasks/util/parseBowerConfiguration');
+const parseConfigurations = require('../../tasks/util/parseConfigurations');
+const CONFIG_TYPE = require('../../tasks/util/CONFIG_TYPE');
 
-describe('parseBowerConfiguration', () => {
+describe('parseConfigurations', () => {
   describe('"run"', () => {
     it('loads a specified Bower configuration file.', done => {
       const options = {
         cwd: process.cwd(),
       };
       options.bowerConfig = path.relative(options.cwd, `${__dirname}/../fixtures/bower.json`);
+      options.npmConfig = path.relative(options.cwd, `${__dirname}/../fixtures/package.json`);
 
-      parseBowerConfiguration
+      parseConfigurations
         .run(options)
-        .then(({result: config}) => {
-          expect(config.settings.exportsOverride).toBeDefined();
+        .then(({result}) => {
+          const bowerConfig = result[CONFIG_TYPE.BOWER];
+          expect(bowerConfig.exportsOverride).toBeDefined();
           done();
         })
         .catch(done.fail);

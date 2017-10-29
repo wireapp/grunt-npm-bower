@@ -35,7 +35,7 @@ function copyFiles(options, {pattern, sourceDir, targetDir}) {
 
         files.forEach(filePath => {
           const sourcePath = path.join(sourceDir, filePath);
-          const targetPath = path.join(targetDir, filePath);
+          const targetPath = path.join(targetDir, path.basename(filePath));
           const message = chalk`Copied file from "{blue ${sourcePath}}" to "{blue ${targetPath}}".`;
           copyTasks.push(fs.copy(sourcePath, targetPath).then(() => logger.writeln(message)));
         });
@@ -48,17 +48,17 @@ function copyFiles(options, {pattern, sourceDir, targetDir}) {
   });
 }
 
-function migrateDependencyNames(config) {
+function migrateDependencyNames(config, type) {
   let allDependencies = [];
   let migratedNames = [];
 
   for (const dependencyType of ['dependencies', 'devDependencies']) {
-    if (config.settings[dependencyType]) {
-      allDependencies = allDependencies.concat(Object.keys(config.settings[dependencyType]));
+    if (config[dependencyType]) {
+      allDependencies = allDependencies.concat(Object.keys(config[dependencyType]));
     }
   }
 
-  if (config.type === CONFIG_TYPE.BOWER) {
+  if (type === CONFIG_TYPE.BOWER) {
     migratedNames = allDependencies.map(name => `${MIGRATION_PREFIX}${name}`);
   } else {
     migratedNames = allDependencies.filter(name => name.startsWith(MIGRATION_PREFIX));
@@ -67,11 +67,11 @@ function migrateDependencyNames(config) {
   return migratedNames.sort();
 }
 
-function migrateOverridePatterns(config, options) {
-  const overridePatterns = config.settings[options.overrideProp] || {};
+function migrateOverridePatterns(config, type, options) {
+  const overridePatterns = config[options.overrideProp] || {};
   let migratedPatterns = {};
 
-  if (config.type === CONFIG_TYPE.BOWER) {
+  if (type === CONFIG_TYPE.BOWER) {
     for (const name in overridePatterns) {
       const pattern = overridePatterns[name];
       migratedPatterns[`${MIGRATION_PREFIX}${name}`] = pattern;
@@ -129,12 +129,12 @@ function resolveName(sourceDir, packageName) {
 
 function writeMigrationsToPackageJSON(options, migratedPatterns) {
   const hasOverrides = Object.keys(migratedPatterns).length > 0;
-  const file = path.join(options.cwd, 'package.json');
+  const file = path.join(options.cwd, options.npmConfig);
 
   if (hasOverrides) {
     const message = chalk`Writing property "{yellowBright ${options.overrideProp}}" into "{blue ${options.verbose
       ? file
-      : 'package.json'}}"...`;
+      : options.npmConfig}}"...`;
     grunt.log.writeln(message);
     const packageJSON = grunt.file.readJSON(file);
     packageJSON[options.overrideProp] = Object.assign({}, packageJSON[options.overrideProp], migratedPatterns);
@@ -155,6 +155,9 @@ function copyBowerComponentsToTargetDir(options, migratedNames, migratedPatterns
   const promises = [];
 
   for (const packageName of migratedNames) {
+    const logger = options.verbose ? grunt.log : grunt.verbose;
+    logger.writeln(chalk`Processing "{blue ${packageName}}"...`);
+
     const sourceDir = path.join(rootSourceDir, packageName);
     const targetPackageName = options.resolveName ? resolveName(sourceDir, packageName) : packageName;
 
@@ -185,7 +188,9 @@ function copyBowerComponentsToTargetDir(options, migratedNames, migratedPatterns
         targetDir: path.join(rootTargetDir, targetPackageName),
       };
 
-      promises.push(copyFiles(options, pathInfos));
+      promises.push(() => {
+        return copyFiles(options, pathInfos);
+      });
     }
   }
 
@@ -195,8 +200,14 @@ function copyBowerComponentsToTargetDir(options, migratedNames, migratedPatterns
 function run(options, config) {
   grunt.log.writeln(`Migrating dependency names and dependency overrides...`);
 
-  const migratedNames = migrateDependencyNames(config);
-  const migratedPatterns = migrateOverridePatterns(config, options);
+  const migratedNames = migrateDependencyNames(config[CONFIG_TYPE.BOWER]).concat(
+    migrateDependencyNames(config[CONFIG_TYPE.NPM])
+  );
+  const migratedPatterns = Object.assign(
+    {},
+    migrateOverridePatterns(config[CONFIG_TYPE.BOWER], CONFIG_TYPE.BOWER, options),
+    migrateOverridePatterns(config[CONFIG_TYPE.NPM], CONFIG_TYPE.NPM, options)
+  );
 
   const message = logDependencyOverview(migratedNames, migratedPatterns);
   grunt.log.writeln(message);
