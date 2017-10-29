@@ -123,7 +123,7 @@ function writeMigrationsToPackageJSON(options, migratedPatterns) {
   }
 }
 
-module.exports = (options, config) => {
+function run(options, config) {
   grunt.log.writeln(`Migrating dependency names and dependency overrides...`);
 
   const migratedNames = migrateDependencyNames(config);
@@ -186,4 +186,10 @@ module.exports = (options, config) => {
   return Promise.all(promises).then(() => ({
     message: chalk`Copied Bower components from "{blue ${options.componentDir}}" to "{blue ${options.targetDir}}".`,
   }));
+}
+
+module.exports = {
+  migrateDependencyNames,
+  MIGRATION_PREFIX,
+  run
 };

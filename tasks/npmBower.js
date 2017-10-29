@@ -25,7 +25,7 @@ module.exports = grunt => {
       .then(() => parseBowerConfiguration(options))
       .then(({message, result: bowerConfig}) => {
         grunt.log.ok(message);
-        return copyBowerComponents(options, bowerConfig);
+        return copyBowerComponents.run(options, bowerConfig);
       })
       .then(({message}) => {
         grunt.log.ok(message);
