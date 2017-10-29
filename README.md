@@ -4,6 +4,7 @@
 <a href="https://travis-ci.org/wireapp/grunt-npm-bower?branch=master"><img src="http://travis-ci.org/wireapp/grunt-npm-bower.svg?branch=master" alt="Travis CI" /></a>
 <a href="https://www.npmjs.com/package/grunt-npm-bower"><img src="https://img.shields.io/npm/v/grunt-npm-bower.svg" alt="npm" /></a>
 <a href="https://greenkeeper.io"><img src="https://badges.greenkeeper.io/wireapp/grunt-npm-bower.svg" alt="Greenkeeper badge" /></a>
+<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="Styled with Prettier" /></a>
 </div>
 
 # Wire
