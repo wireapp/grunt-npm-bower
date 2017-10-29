@@ -25,8 +25,7 @@ const CONFIG_TYPE = require('./CONFIG_TYPE');
 
 function parseConfiguration(path) {
   try {
-    config = grunt.file.readJSON(path);
-    return Promise.resolve(config);
+    return Promise.resolve(grunt.file.readJSON(path));
   } catch (error) {
     return Promise.reject(error);
   }
@@ -42,19 +41,19 @@ function run(options) {
 
   return parseConfiguration(bowerJSON)
     .catch(() => {
-      grunt.log.writeln(chalk`Cannot find "{blue ${options.verbose
-        ? bowerJSON
-        : options.bowerConfig}}". Continuing with "{blue ${options.verbose
-        ? packageJSON
-        : options.npmConfig}}"...`);
+      grunt.log.writeln(
+        chalk`Cannot find "{blue ${options.verbose
+          ? bowerJSON
+          : options.bowerConfig}}". Continuing with "{blue ${options.verbose ? packageJSON : options.npmConfig}}"...`
+      );
 
       return {};
     })
-    .then((bowerConfig) => {
+    .then(bowerConfig => {
       configs[CONFIG_TYPE.BOWER] = bowerConfig;
-      return parseConfiguration(packageJSON)
+      return parseConfiguration(packageJSON);
     })
-    .then((npmConfig) => {
+    .then(npmConfig => {
       configs[CONFIG_TYPE.NPM] = npmConfig;
       return {
         message: 'Parsed configurations.',

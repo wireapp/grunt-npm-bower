@@ -200,12 +200,14 @@ function copyBowerComponentsToTargetDir(options, migratedNames, migratedPatterns
 function run(options, config) {
   grunt.log.writeln(`Migrating dependency names and dependency overrides...`);
 
-  const migratedNames = migrateDependencyNames(config[CONFIG_TYPE.BOWER]).concat(migrateDependencyNames(config[CONFIG_TYPE.NPM]));
-  const migratedPatterns =
-    Object.assign({},
-      migrateOverridePatterns(config[CONFIG_TYPE.BOWER], CONFIG_TYPE.BOWER, options),
-      migrateOverridePatterns(config[CONFIG_TYPE.NPM], CONFIG_TYPE.NPM, options)
-    );
+  const migratedNames = migrateDependencyNames(config[CONFIG_TYPE.BOWER]).concat(
+    migrateDependencyNames(config[CONFIG_TYPE.NPM])
+  );
+  const migratedPatterns = Object.assign(
+    {},
+    migrateOverridePatterns(config[CONFIG_TYPE.BOWER], CONFIG_TYPE.BOWER, options),
+    migrateOverridePatterns(config[CONFIG_TYPE.NPM], CONFIG_TYPE.NPM, options)
+  );
 
   const message = logDependencyOverview(migratedNames, migratedPatterns);
   grunt.log.writeln(message);

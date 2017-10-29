@@ -27,8 +27,8 @@ describe('copyBowerComponents', () => {
         [CONFIG_TYPE.BOWER]: {
           dependencies: {
             amplify: 'https://github.com/wireapp/amplify.git#1.1.5',
-          }
-        }
+          },
+        },
       };
 
       const packageName = Object.keys(config[CONFIG_TYPE.BOWER].dependencies)[0];
@@ -48,8 +48,8 @@ describe('copyBowerComponents', () => {
           },
           devDependencies: {
             logdown: '2.2.0',
-          }
-        }
+          },
+        },
       };
 
       const bowerConfig = config[CONFIG_TYPE.BOWER];
