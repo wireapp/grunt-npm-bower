@@ -3,11 +3,10 @@
 <div align="center">
 <a href="https://travis-ci.org/wireapp/grunt-npm-bower?branch=master"><img src="http://travis-ci.org/wireapp/grunt-npm-bower.svg?branch=master" alt="Travis CI" /></a>
 <a href="https://www.npmjs.com/package/grunt-npm-bower"><img src="https://img.shields.io/npm/v/grunt-npm-bower.svg" alt="npm" /></a>
+<a href="https://greenkeeper.io"><img src="https://badges.greenkeeper.io/wireapp/grunt-npm-bower.svg" alt="Greenkeeper badge" /></a>
 </div>
 
 # Wire
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/wireapp/grunt-npm-bower.svg)](https://greenkeeper.io/)
 
 This repository is part of the source code of Wire. You can find more information at [wire.com](https://wire.com) or by contacting opensource@wire.com.
 
