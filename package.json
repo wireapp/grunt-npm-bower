@@ -40,7 +40,9 @@
     "lint:config": "prettier --ignore-path .gitignore \"**/*.json\"",
     "lint:script": "eslint --ignore-path .gitignore \"**/*.js\"",
     "start": "grunt",
-    "test": "jasmine"
+    "test": "jasmine",
+    "preversion": "yarn test",
+    "postversion": "git push && git push --tags"
   },
   "version": "0.0.0"
 }
