@@ -36,7 +36,7 @@
   },
   "scripts": {
     "fix": "yarn lint:config --write && yarn lint:script --fix",
-    "lint": "yarn lint:config && yarn lint:script",
+    "lint": "yarn lint:script",
     "lint:config": "prettier --ignore-path .gitignore \"**/*.json\"",
     "lint:script": "eslint --ignore-path .gitignore \"**/*.js\"",
     "start": "grunt",
