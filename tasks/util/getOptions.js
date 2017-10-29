@@ -1,6 +1,17 @@
 const chalk = require('chalk');
 const grunt = require('grunt');
 
+const DEFAULT_OPTIONS = {
+  bowerConfig: 'bower.json',
+  cleanTargetDir: false,
+  componentDir: 'node_modules',
+  overrideProp: 'exportsOverride',
+  resolveName: true,
+  verbose: false,
+};
+
+const REQUIRED_OPTIONS = ['targetDir'];
+
 function verifyOptions(options, requiredOptions) {
   requiredOptions.forEach(option => {
     if (!options[option]) {
@@ -12,22 +23,11 @@ function verifyOptions(options, requiredOptions) {
 function run(customOptions) {
   grunt.log.writeln(`Parsing task options...`);
 
-  const defaults = {
-    bowerConfig: 'bower.json',
-    cleanTargetDir: false,
-    componentDir: 'node_modules',
-    overrideProp: 'exportsOverride',
-    resolveName: true,
-    verbose: false,
-  };
-
-  const required = ['targetDir'];
-
-  const options = customOptions(defaults);
+  const options = customOptions(DEFAULT_OPTIONS);
   options.cwd = grunt.option('base') || process.cwd();
 
   return Promise.resolve()
-    .then(() => verifyOptions(options, required))
+    .then(() => verifyOptions(options, REQUIRED_OPTIONS))
     .then(() => ({
       message: chalk`Options: {blue ${JSON.stringify(options)}}`,
       result: options,
@@ -35,5 +35,7 @@ function run(customOptions) {
 }
 
 module.exports = {
+  DEFAULT_OPTIONS,
+  REQUIRED_OPTIONS,
   run,
 };

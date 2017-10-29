@@ -3,8 +3,9 @@ module.exports = grunt => {
     npmBower: {
       options: {
         bowerConfig: './spec/fixtures/bower.json',
-        bowerDir: './test/bower_components',
         cleanTargetDir: true,
+        componentDir: './node_modules',
+        overrideProp: 'exportsOverride',
         resolveName: true,
         targetDir: './temp',
         verbose: true,
