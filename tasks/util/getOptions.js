@@ -9,7 +9,7 @@ function verifyOptions(options, requiredOptions) {
   });
 }
 
-module.exports = customOptions => {
+function run(customOptions) {
   grunt.log.writeln(`Parsing task options...`);
 
   const defaults = {
@@ -32,4 +32,8 @@ module.exports = customOptions => {
       message: chalk`Options: {blue ${JSON.stringify(options)}}`,
       result: options,
     }));
+}
+
+module.exports = {
+  run,
 };

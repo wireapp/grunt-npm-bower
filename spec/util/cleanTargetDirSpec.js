@@ -3,7 +3,7 @@ const path = require('path');
 
 const cleanTargetDir = require('../../tasks/util/cleanTargetDir');
 
-describe('"cleanTargetDir"', () => {
+describe('cleanTargetDir', () => {
   let storagePath = undefined;
 
   beforeEach(done => {
@@ -24,17 +24,20 @@ describe('"cleanTargetDir"', () => {
       .catch(done.fail)
   );
 
-  it('deletes the specified target directory.', done => {
-    const options = {
-      cwd: process.cwd(),
-    };
-    options.targetDir = path.relative(options.cwd, storagePath);
+  describe('"run"', () => {
+    it('deletes the specified target directory.', done => {
+      const options = {
+        cwd: process.cwd(),
+      };
+      options.targetDir = path.relative(options.cwd, storagePath);
 
-    cleanTargetDir(options)
-      .then(({result}) => {
-        expect(result).toBe(storagePath);
-        done();
-      })
-      .catch(done.fail);
+      cleanTargetDir
+        .run(options)
+        .then(({result}) => {
+          expect(result).toBe(storagePath);
+          done();
+        })
+        .catch(done.fail);
+    });
   });
 });

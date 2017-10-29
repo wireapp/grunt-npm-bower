@@ -191,5 +191,5 @@ function run(options, config) {
 module.exports = {
   migrateDependencyNames,
   MIGRATION_PREFIX,
-  run
+  run,
 };

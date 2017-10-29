@@ -4,7 +4,7 @@ const path = require('path');
 
 const CONFIG_TYPE = require('./CONFIG_TYPE');
 
-module.exports = options => {
+function run(options) {
   grunt.log.writeln(`Validating "${chalk.blue(options.bowerConfig)}"...`);
 
   const bowerConfigPath = path.join(options.cwd, options.bowerConfig);
@@ -42,4 +42,8 @@ module.exports = options => {
       },
     };
   });
+}
+
+module.exports = {
+  run,
 };

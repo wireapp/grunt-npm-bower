@@ -1,17 +1,14 @@
-const path = require('path');
-
 const copyBowerComponents = require('../../tasks/util/copyBowerComponents');
 const CONFIG_TYPE = require('../../tasks/util/CONFIG_TYPE');
 
 describe('copyBowerComponents', () => {
-
   describe('"migrateDependencyNames"', () => {
     it('prefixes package names.', () => {
       const config = {
         settings: {
-          "dependencies": {
-            "amplify": "https://github.com/wireapp/amplify.git#1.1.5",
-          }
+          dependencies: {
+            amplify: 'https://github.com/wireapp/amplify.git#1.1.5',
+          },
         },
         type: CONFIG_TYPE.BOWER,
       };
@@ -27,12 +24,12 @@ describe('copyBowerComponents', () => {
     it('concatenates dependencies and development dependencies.', () => {
       const config = {
         settings: {
-          "dependencies": {
-            "amplify": "https://github.com/wireapp/amplify.git#1.1.5",
+          dependencies: {
+            amplify: 'https://github.com/wireapp/amplify.git#1.1.5',
           },
-          "devDependencies": {
-            "logdown": "2.2.0"
-          }
+          devDependencies: {
+            logdown: '2.2.0',
+          },
         },
         type: CONFIG_TYPE.BOWER,
       };
@@ -41,5 +38,4 @@ describe('copyBowerComponents', () => {
       expect(Object.keys(migratedNames).length).toBe(2);
     });
   });
-
 });

@@ -13,16 +13,16 @@ module.exports = grunt => {
     const done = this.async();
     let options;
 
-    return Promise.resolve()
-      .then(() => getOptions(this.options))
+    return getOptions
+      .run(this.options)
       .then(({message, result}) => {
         options = result;
         grunt.log.ok(message);
         if (options.cleanTargetDir) {
-          return cleanTargetDir(options).then(({message}) => grunt.log.ok(message));
+          return cleanTargetDir.run(options).then(({message}) => grunt.log.ok(message));
         }
       })
-      .then(() => parseBowerConfiguration(options))
+      .then(() => parseBowerConfiguration.run(options))
       .then(({message, result: bowerConfig}) => {
         grunt.log.ok(message);
         return copyBowerComponents.run(options, bowerConfig);

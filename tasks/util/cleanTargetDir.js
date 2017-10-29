@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const grunt = require('grunt');
 const path = require('path');
 
-module.exports = options => {
+function run(options) {
   grunt.log.writeln(`Removing directory "${chalk.blue(options.targetDir)}"...`);
   const targetDir = path.join(options.cwd, options.targetDir);
 
@@ -13,4 +13,8 @@ module.exports = options => {
       result: path.normalize(targetDir),
     };
   });
+}
+
+module.exports = {
+  run,
 };
