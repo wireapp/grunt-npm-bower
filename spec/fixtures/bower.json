@@ -1,0 +1,67 @@
+{
+  "name": "sample-project",
+  "dependencies": {
+    "amplify": "https://github.com/wireapp/amplify.git#1.1.5",
+    "cryptojs":
+      "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/crypto-js/CryptoJS%20v3.1.2.zip",
+    "generic-message-proto": "https://github.com/wireapp/generic-message-proto.git#1.18.0",
+    "highlightjs": "https://github.com/components/highlightjs.git#9.12.0",
+    "linkifyjs": "https://github.com/nfrasser/linkify-shim.git#2.1.5",
+    "protobuf": "5.0.2",
+    "webapp-module-bubble": "https://github.com/wireapp/webapp-module-bubble.git#1.1.0",
+    "wire-audio-files": "https://github.com/wireapp/wire-audio-files.git#1.1.0",
+    "wire-theme": "https://github.com/wireapp/wire-theme.git#1.0.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.0.7"
+  },
+  "exportsOverride": {
+    "amplify": {
+      "js": "lib/amplify.js"
+    },
+    "bytebuffer": {
+      "js": "dist/ByteBufferAB.js"
+    },
+    "cryptojs": {
+      "js": [
+        "components/core.js",
+        "components/lib-typedarrays.js",
+        "components/md5.js",
+        "components/enc-base64.js",
+        "components/sha256.js"
+      ]
+    },
+    "generic-message-proto": {
+      "proto": "proto/messages.proto"
+    },
+    "highlightjs": {
+      "js": "highlight.pack.js",
+      "css": "styles/github.css"
+    },
+    "jquery": {
+      "js": "dist/jquery.js"
+    },
+    "linkifyjs": {
+      "js": "linkify{-html,}.min.js"
+    },
+    "long": {
+      "js": "dist/long.js"
+    },
+    "protobuf": {
+      "js": "dist/protobuf.js"
+    },
+    "webapp-module-namespace": {
+      "js": "js/*.js"
+    },
+    "wire-audio-files": {
+      "audio": "webapp/*"
+    },
+    "webapp-module-bubble": {
+      "js": "dist/script/*.js",
+      "less": "app/style/webapp-module-bubble.less"
+    },
+    "wire-theme": {
+      "less": "app/style/{wire-theme,variables,input}.less"
+    }
+  }
+}
