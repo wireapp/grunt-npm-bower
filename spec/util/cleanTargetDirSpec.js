@@ -6,7 +6,7 @@ const cleanTargetDir = require('../../tasks/util/cleanTargetDir');
 describe('"cleanTargetDir"', () => {
   let storagePath = undefined;
 
-  beforeEach((done) => {
+  beforeEach(done => {
     fs.mkdtemp(path.join(__dirname, 'test-'), (error, folder) => {
       if (error) {
         done.fail(error);
@@ -17,11 +17,16 @@ describe('"cleanTargetDir"', () => {
     });
   });
 
-  afterEach((done) => fs.remove(storagePath).then(done).catch(done.fail));
+  afterEach(done =>
+    fs
+      .remove(storagePath)
+      .then(done)
+      .catch(done.fail)
+  );
 
   it('deletes the specified target directory.', done => {
     const options = {
-      cwd: process.cwd()
+      cwd: process.cwd(),
     };
     options.targetDir = path.relative(options.cwd, storagePath);
 

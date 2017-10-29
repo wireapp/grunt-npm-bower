@@ -14,8 +14,8 @@ module.exports = customOptions => {
 
   const defaults = {
     bowerConfig: 'bower.json',
-    bowerDir: 'node_modules',
     cleanTargetDir: false,
+    componentDir: 'node_modules',
     overrideProp: 'exportsOverride',
     resolveName: true,
     verbose: false,

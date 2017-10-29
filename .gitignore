@@ -1,4 +1,6 @@
 .yarnclean
+.yarn-error.log
+.yarn-integrity
 /.idea
 /temp
 bower_components

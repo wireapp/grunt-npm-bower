@@ -1,5 +1,5 @@
 {
-  "name": "wire-webapp",
+  "name": "sample-project",
   "dependencies": {
     "amplify": "https://github.com/wireapp/amplify.git#1.1.5",
     "cryptojs":
@@ -7,6 +7,7 @@
     "generic-message-proto": "https://github.com/wireapp/generic-message-proto.git#1.18.0",
     "highlightjs": "https://github.com/components/highlightjs.git#9.12.0",
     "linkifyjs": "https://github.com/nfrasser/linkify-shim.git#2.1.5",
+    "protobuf": "5.0.2",
     "webapp-module-bubble": "https://github.com/wireapp/webapp-module-bubble.git#1.1.0",
     "wire-audio-files": "https://github.com/wireapp/wire-audio-files.git#1.1.0",
     "wire-theme": "https://github.com/wireapp/wire-theme.git#1.0.0"
@@ -17,6 +18,9 @@
   "exportsOverride": {
     "amplify": {
       "js": "lib/amplify.js"
+    },
+    "bytebuffer": {
+      "js": "dist/ByteBufferAB.js"
     },
     "cryptojs": {
       "js": [
@@ -39,6 +43,12 @@
     },
     "linkifyjs": {
       "js": "linkify{-html,}.min.js"
+    },
+    "long": {
+      "js": "dist/long.js"
+    },
+    "protobuf": {
+      "js": "dist/protobuf.js"
     },
     "webapp-module-namespace": {
       "js": "js/*.js"
