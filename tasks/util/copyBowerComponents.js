@@ -212,7 +212,7 @@ function run(options, config) {
   const message = logDependencyOverview(migratedNames, migratedPatterns);
   grunt.log.writeln(message);
 
-  if (config.type === CONFIG_TYPE.BOWER) {
+  if (Object.keys(config[CONFIG_TYPE.BOWER]).length) {
     writeMigrationsToPackageJSON(options, migratedPatterns);
   }
 
