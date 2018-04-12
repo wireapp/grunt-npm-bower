@@ -10,7 +10,7 @@
     "eslint-plugin-prettier": "2.4.0",
     "grunt": "1.0.2",
     "jasmine": "2.8.0",
-    "prettier": "1.7.4"
+    "prettier": "1.12.0"
   },
   "description": "Grunt plugin which helps migrating from Bower to npm.",
   "license": "GPL-3.0",
